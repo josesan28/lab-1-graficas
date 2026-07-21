@@ -18,11 +18,9 @@ pub fn line(framebuffer: &mut Framebuffer, start: Vector2, end: Vector2) {
 
     loop {
         framebuffer.set_pixel(x as u32, y as u32);
-
         if x == x1 && y == y1 {
             break;
         }
-
         let e2 = 2 * err;
         if e2 >= dy {
             err += dy;

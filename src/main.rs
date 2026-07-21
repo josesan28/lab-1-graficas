@@ -4,60 +4,34 @@ mod polygon;
 
 use raylib::prelude::*;
 use framebuffer::Framebuffer;
-use line::line;
-use polygon::draw_polygon;
+use polygon::fill_polygon;
 
 fn main() {
     let width = 800;
     let height = 600;
-    let mut framebuffer = Framebuffer::new(width, height, Color::new(50, 50, 100, 255));
+    let background = Color::new(50, 50, 100, 255);
+    let mut framebuffer = Framebuffer::new(width, height, background);
     framebuffer.clear();
 
-    // Líneas
-    framebuffer.set_current_color(Color::GREEN);
-    line(
-        &mut framebuffer,
-        Vector2::new(50.0, 50.0),
-        Vector2::new(350.0, 350.0),
-    );
-
-    framebuffer.set_current_color(Color::RED);
-    line(
-        &mut framebuffer,
-        Vector2::new(350.0, 50.0),
-        Vector2::new(50.0, 350.0),
-    );
-
-    // Triángulo
-    framebuffer.set_current_color(Color::YELLOW);
-    let triangulo = vec![
-        Vector2::new(400.0, 100.0),
-        Vector2::new(550.0, 400.0),
-        Vector2::new(250.0, 400.0),
+    // Polígono 1
+    let poly1 = vec![
+        Vector2::new(165.0, 380.0),
+        Vector2::new(185.0, 360.0),
+        Vector2::new(180.0, 330.0),
+        Vector2::new(207.0, 345.0),
+        Vector2::new(233.0, 330.0),
+        Vector2::new(230.0, 360.0),
+        Vector2::new(250.0, 380.0),
+        Vector2::new(220.0, 385.0),
+        Vector2::new(205.0, 410.0),
+        Vector2::new(193.0, 383.0),
     ];
-    draw_polygon(&mut framebuffer, &triangulo);
 
-    // Cuadrado
-    framebuffer.set_current_color(Color::CYAN);
-    let cuadrado = vec![
-        Vector2::new(100.0, 450.0),
-        Vector2::new(300.0, 450.0),
-        Vector2::new(300.0, 550.0),
-        Vector2::new(100.0, 550.0),
-    ];
-    draw_polygon(&mut framebuffer, &cuadrado);
+    // Rellenar polígonos con sus colores
+    fill_polygon(&mut framebuffer, &poly1, Color::YELLOW, Color::WHITE);
 
-    // Polígono que se sale de la pantalla
-    framebuffer.set_current_color(Color::MAGENTA);
-    let fuera = vec![
-        Vector2::new(-50.0, -50.0),
-        Vector2::new(850.0, -50.0),
-        Vector2::new(850.0, 650.0),
-        Vector2::new(-50.0, 650.0),
-    ];
-    draw_polygon(&mut framebuffer, &fuera);
-
-    let output_file = "polygons.png";
+    // Guardar imagen en formato PNG
+    let output_file = "out.png";
     framebuffer.render_to_file(output_file);
     println!("Imagen guardada en {}", output_file);
 }

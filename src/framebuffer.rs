@@ -22,9 +22,9 @@ impl Framebuffer {
 
     pub fn clear(&mut self) {
         self.color_buffer = Image::gen_image_color(
-            self.width as i32, 
-            self.height as i32, 
-            self.background_color
+            self.width as i32,
+            self.height as i32,
+            self.background_color,
         );
     }
 
