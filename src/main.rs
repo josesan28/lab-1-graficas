@@ -27,8 +27,17 @@ fn main() {
         Vector2::new(193.0, 383.0),
     ];
 
+    // Polígono 2
+    let poly2 = vec![
+        Vector2::new(321.0, 335.0),
+        Vector2::new(288.0, 286.0),
+        Vector2::new(339.0, 251.0),
+        Vector2::new(374.0, 302.0),
+    ];
+
     // Rellenar polígonos con sus colores
     fill_polygon(&mut framebuffer, &poly1, Color::YELLOW, Color::WHITE);
+    fill_polygon(&mut framebuffer, &poly2, Color::BLUE, Color::WHITE);
 
     // Guardar imagen en formato PNG
     let output_file = "out.png";
